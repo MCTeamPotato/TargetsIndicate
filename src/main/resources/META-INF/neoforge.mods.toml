@@ -1,0 +1,17 @@
+modLoader = "javafml"
+loaderVersion = "[4,)"
+#issueTrackerURL = ""
+license = "MIT"
+
+[[mods]]
+modId = "targetsindicate"
+version = "${version}"
+displayName = "TargetsIndicate"
+authors = "Kall"
+description = '''
+Targets Indicate adds sleek, animated health bars for recently attacked mobs, pinned to the side of your screen.
+Each entry can show the mob name, a colour‑gradient health bar, optional current/max health and percentage, plus a live 3D entity icon.
+Bars slide in and fade out smoothly, and you can prioritise the mob under your crosshair.
+Fully configurable via the in‑game menu: side (left/right), bar size, colours, max entries, lifetime, scaling, margins, and more.
+'''
+logoFile = "logo.png"
