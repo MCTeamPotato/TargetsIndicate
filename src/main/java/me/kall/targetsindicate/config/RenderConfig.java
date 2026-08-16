@@ -47,7 +47,7 @@ public final class RenderConfig {
                 .define("enabled", true);
         RENDER_ENTITY_ICON = builder
                 .comment("是否渲染生物实体模型图标（较耗性能）", "Whether to render the entity model icon (that's expensive regarding performance)")
-                .define("renderEntityModel", true);
+                .define("renderEntityModel", false);
         SIDE = builder
                 .comment("显示在屏幕的哪一侧：LEFT / RIGHT", "Which side of the screen to display: LEFT / RIGHT")
                 .defineEnum("side", Side.LEFT);
