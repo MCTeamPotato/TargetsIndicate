@@ -26,4 +26,6 @@ public class TargetState {
     public float targetX, targetY;
     public float currentScale = 0.6F;
     public float targetScale = 1.0F;
+
+    public float spawnBlend = 0.0F;
 }

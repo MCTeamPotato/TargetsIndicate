@@ -27,11 +27,16 @@ public final class RenderConfig {
     public static final ModConfigSpec.IntValue HEALTH_MID_COLOR;
     public static final ModConfigSpec.IntValue HEALTH_LOW_COLOR;
 
+    public static final ModConfigSpec.IntValue HOVER_BG_COLOR;
+    public static final ModConfigSpec.IntValue HOVER_TEXT_COLOR;
+
     public static final ModConfigSpec.BooleanValue RENDER_ENTITY_ICON;
 
     public static final ModConfigSpec.BooleanValue PRIORITIZE_LOOKED_AT;
 
     public static final ModConfigSpec.BooleanValue RENDER_HEALTH, RENDER_PRECENT;
+
+    public static final ModConfigSpec.BooleanValue FONT_SHADOW;
 
     static {
         ModConfigSpec.Builder builder = new ModConfigSpec.Builder();
@@ -59,6 +64,9 @@ public final class RenderConfig {
                 .define("renderHealthAndMaxHealth", true);
         RENDER_PRECENT = builder.comment("是否在信息框生物名称后渲染生物血量百分比", "Whether to render health percentage after name.")
                 .define("renderHealthPercent", true);
+        FONT_SHADOW = builder
+                .comment("信息框文字是否渲染阴影", "Whether the info box text is rendered with a shadow")
+                .define("fontShadow", true);
         builder.pop();
 
         builder.push("layout");
@@ -101,6 +109,12 @@ public final class RenderConfig {
         HEALTH_LOW_COLOR = builder
                 .comment("血量较低时的颜色 ARGB", "Color when health percentage is low ARGB")
                 .defineInRange("healthLowColor", 0xFFE04B3B, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        HOVER_BG_COLOR = builder
+                .comment("准星指向但尚未被追踪的目标，其预览信息框的背景颜色 ARGB（默认：半透明浅灰色）", "Background color ARGB of the preview box for a crosshair target that is not yet tracked (default: semi-transparent light gray)")
+                .defineInRange("hoverPreviewBackgroundColor", 0x60CCCCCC, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        HOVER_TEXT_COLOR = builder
+                .comment("准星指向但尚未被追踪的目标，其预览信息框的文字与血条颜色 ARGB（默认：灰色）", "Text and health bar color ARGB of the preview box for a crosshair target that is not yet tracked (default: gray)")
+                .defineInRange("hoverPreviewTextColor", 0xFFAAAAAA, Integer.MIN_VALUE, Integer.MAX_VALUE);
         builder.pop();
 
         CONFIG = builder.build();

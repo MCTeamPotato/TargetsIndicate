@@ -20,7 +20,7 @@ import net.neoforged.neoforge.event.entity.player.AttackEntityEvent;
 import org.jetbrains.annotations.NotNull;
 
 @EventBusSubscriber(modid = TargetsIndicate.MOD_ID, value = Dist.CLIENT)
-public class DamageDetectEvent {
+public class DamageDetection {
     public static final Int2ObjectOpenHashMap<TargetState> TARGET_STATES = new Int2ObjectOpenHashMap<>();
     public static final IntArrayList ORDER = new IntArrayList();
 
