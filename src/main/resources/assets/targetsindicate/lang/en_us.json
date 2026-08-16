@@ -30,6 +30,9 @@
   "targetsindicate.configuration.renderHealthPercent": "Show Health Percentage",
   "targetsindicate.configuration.renderHealthPercent.tooltip": "Whether to render health percentage after the name.",
 
+  "targetsindicate.configuration.fontShadow": "Font Shadow",
+  "targetsindicate.configuration.fontShadow.tooltip": "Whether the info box text is rendered with a shadow.",
+
   "targetsindicate.configuration.barWidth": "Bar Width",
   "targetsindicate.configuration.barWidth.tooltip": "Health bar width (pixels, at base scale).",
 
@@ -64,5 +67,11 @@
   "targetsindicate.configuration.healthMidColor.tooltip": "Color when health percentage is medium (ARGB).",
 
   "targetsindicate.configuration.healthLowColor": "Health Low Color",
-  "targetsindicate.configuration.healthLowColor.tooltip": "Color when health percentage is low (ARGB)."
+  "targetsindicate.configuration.healthLowColor.tooltip": "Color when health percentage is low (ARGB).",
+
+  "targetsindicate.configuration.hoverPreviewBackgroundColor": "Hover Preview Background Color",
+  "targetsindicate.configuration.hoverPreviewBackgroundColor.tooltip": "Background color ARGB of the preview box for a crosshair target that is not yet tracked (default: semi-transparent light gray).",
+
+  "targetsindicate.configuration.hoverPreviewTextColor": "Hover Preview Text Color",
+  "targetsindicate.configuration.hoverPreviewTextColor.tooltip": "Text and health bar color ARGB of the preview box for a crosshair target that is not yet tracked (default: gray)."
 }

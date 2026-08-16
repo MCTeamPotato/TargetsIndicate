@@ -65,7 +65,7 @@ public final class RenderConfig {
         RENDER_PRECENT = builder.comment("是否在信息框生物名称后渲染生物血量百分比", "Whether to render health percentage after name.")
                 .define("renderHealthPercent", true);
         FONT_SHADOW = builder
-                .comment("信息框文字是否渲染阴影", "Whether the info box text is rendered with a shadow")
+                .comment("信息框文字是否渲染阴影", "Whether the info box text is rendered with a shadow.")
                 .define("fontShadow", true);
         builder.pop();
 

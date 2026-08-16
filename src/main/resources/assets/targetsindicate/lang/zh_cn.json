@@ -30,6 +30,9 @@
   "targetsindicate.configuration.renderHealthPercent": "显示血量百分比",
   "targetsindicate.configuration.renderHealthPercent.tooltip": "是否在名称后面渲染血量百分比",
 
+  "targetsindicate.configuration.fontShadow": "字体阴影",
+  "targetsindicate.configuration.fontShadow.tooltip": "信息框文字是否渲染阴影",
+
   "targetsindicate.configuration.barWidth": "血条宽度",
   "targetsindicate.configuration.barWidth.tooltip": "血条宽度（像素，基准缩放下）",
 
@@ -64,5 +67,11 @@
   "targetsindicate.configuration.healthMidColor.tooltip": "血量中等时的颜色 ARGB",
 
   "targetsindicate.configuration.healthLowColor": "血量较低颜色",
-  "targetsindicate.configuration.healthLowColor.tooltip": "血量较低时的颜色 ARGB"
+  "targetsindicate.configuration.healthLowColor.tooltip": "血量较低时的颜色 ARGB",
+
+  "targetsindicate.configuration.hoverPreviewBackgroundColor": "预览框背景颜色",
+  "targetsindicate.configuration.hoverPreviewBackgroundColor.tooltip": "准星指向但尚未被追踪的目标，其预览信息框的背景颜色 ARGB（默认：半透明浅灰色）",
+
+  "targetsindicate.configuration.hoverPreviewTextColor": "预览框字体颜色",
+  "targetsindicate.configuration.hoverPreviewTextColor.tooltip": "准星指向但尚未被追踪的目标，其预览信息框的文字与血条颜色 ARGB（默认：灰色）"
 }
