@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        branch: [1211]
+        branch: [1211, 1201]
 
     steps:
       - name: Checkout target branch
