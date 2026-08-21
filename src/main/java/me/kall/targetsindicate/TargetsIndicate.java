@@ -1,20 +1,16 @@
 package me.kall.targetsindicate;
 
 import me.kall.targetsindicate.config.RenderConfig;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.fml.ModContainer;
-import net.neoforged.fml.common.Mod;
-import net.neoforged.fml.config.ModConfig;
-import net.neoforged.neoforge.client.gui.ConfigurationScreen;
-import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.jetbrains.annotations.NotNull;
 
-@Mod(value = TargetsIndicate.MOD_ID, dist = Dist.CLIENT)
+@Mod(TargetsIndicate.MOD_ID)
 public final class TargetsIndicate {
     public static final String MOD_ID = "targetsindicate";
 
-    public TargetsIndicate(@NotNull ModContainer container) {
-        container.registerConfig(ModConfig.Type.CLIENT, RenderConfig.CONFIG);
-        container.registerExtensionPoint(IConfigScreenFactory.class, (modContainer, parentScreen) -> new ConfigurationScreen(container, parentScreen));
+    public TargetsIndicate(@NotNull FMLJavaModLoadingContext context) {
+        context.registerConfig(ModConfig.Type.CLIENT, RenderConfig.CONFIG);
     }
 }

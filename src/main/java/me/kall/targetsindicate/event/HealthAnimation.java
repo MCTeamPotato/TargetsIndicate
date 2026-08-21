@@ -17,11 +17,11 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.client.event.RenderFrameEvent;
-import net.neoforged.neoforge.client.event.RenderGuiLayerEvent;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.RenderGuiOverlayEvent;
+import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,12 +42,12 @@ public class HealthAnimation {
     private static final HoverPreviewState HOVER = new HoverPreviewState();
 
     @SubscribeEvent
-    public static void nextFrame(RenderFrameEvent.Pre event) {
-        tickConsumed = false;
+    public static void nextFrame(TickEvent.RenderTickEvent event) {
+        if (event.phase.equals(TickEvent.Phase.START)) tickConsumed = false;
     }
 
     @SubscribeEvent
-    public static void render(RenderGuiLayerEvent.Post event) {
+    public static void render(RenderGuiOverlayEvent.Post event) {
         if (tickConsumed) return;
 
         Minecraft minecraft = Minecraft.getInstance();
@@ -199,7 +199,7 @@ public class HealthAnimation {
             int id = entry.getIntKey();
             TargetState state = entry.getValue();
 
-            int clampedRank = Math.clamp(state.rank, 0, maxEntries - 1);
+            int clampedRank = Math.min(maxEntries - 1, Math.max(state.rank, 0));
             float targetScale = clampedRank == 0 ? topScale : subScale;
             float targetY = rowCenterY[clampedRank];
             float targetAlpha = state.alive ? 1.0f : 0.0f;
@@ -326,7 +326,22 @@ public class HealthAnimation {
 
             pose.popPose();
 
-            if (showIcon && entity instanceof LivingEntity livingEntity) InventoryScreen.renderEntityInInventoryFollowsMouse(graphics, screenIconX, screenIconY, screenIconX2, screenIconY2, (int) ((float) iconSize / 2 * state.currentScale), 0.0625f, mouseX, mouseY, livingEntity);
+            if (showIcon && entity instanceof LivingEntity livingEntity) {
+                int iconCenterX = (screenIconX + screenIconX2) / 2;
+                int iconCenterY = (screenIconY + screenIconY2) / 2;
+                int renderScale = (int) ((float) iconSize / 2 * state.currentScale);
+                int renderY = iconCenterY + Math.round(renderScale * (0.0625F + livingEntity.getBbHeight() / 2.0F));
+
+                InventoryScreen.renderEntityInInventoryFollowsMouse(
+                        graphics,
+                        iconCenterX,
+                        renderY,
+                        renderScale,
+                        iconCenterX - mouseX,
+                        iconCenterY - mouseY,
+                        livingEntity
+                );
+            }
         }
 
         if (HOVER.alpha > 0.01f) {
@@ -375,7 +390,22 @@ public class HealthAnimation {
 
             hoverPose.popPose();
 
-            if (showIcon && hoverEntity instanceof LivingEntity hoverLiving) InventoryScreen.renderEntityInInventoryFollowsMouse(graphics, hScreenIconX, hScreenIconY, hScreenIconX2, hScreenIconY2, (int) ((float) iconSize / 2 * HOVER.currentScale), 0.0625f, mouseX, mouseY, hoverLiving);
+            if (showIcon && hoverEntity instanceof LivingEntity hoverLiving) {
+                int hoverIconCenterX = (hScreenIconX + hScreenIconX2) / 2;
+                int hoverIconCenterY = (hScreenIconY + hScreenIconY2) / 2;
+                int hoverRenderScale = (int) ((float) iconSize / 2 * HOVER.currentScale);
+                int hoverRenderY = hoverIconCenterY + Math.round(hoverRenderScale * (0.0625F + hoverLiving.getBbHeight() / 2.0F));
+
+                InventoryScreen.renderEntityInInventoryFollowsMouse(
+                        graphics,
+                        hoverIconCenterX,
+                        hoverRenderY,
+                        hoverRenderScale,
+                        hoverIconCenterX - mouseX,
+                        hoverIconCenterY - mouseY,
+                        hoverLiving
+                );
+            }
         }
 
         tickConsumed = true;

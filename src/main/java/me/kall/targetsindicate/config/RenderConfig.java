@@ -1,45 +1,45 @@
 package me.kall.targetsindicate.config;
 
-import net.neoforged.neoforge.common.ModConfigSpec;
+import net.minecraftforge.common.ForgeConfigSpec;
 
 public final class RenderConfig {
     public enum Side { LEFT, RIGHT }
 
-    public static final ModConfigSpec CONFIG;
+    public static final ForgeConfigSpec CONFIG;
 
-    public static final ModConfigSpec.BooleanValue ENABLED;
-    public static final ModConfigSpec.EnumValue<Side> SIDE;
-    public static final ModConfigSpec.IntValue MAX_ENTRIES;
-    public static final ModConfigSpec.IntValue ENTRY_LIFETIME;
+    public static final ForgeConfigSpec.BooleanValue ENABLED;
+    public static final ForgeConfigSpec.EnumValue<Side> SIDE;
+    public static final ForgeConfigSpec.IntValue MAX_ENTRIES;
+    public static final ForgeConfigSpec.IntValue ENTRY_LIFETIME;
 
-    public static final ModConfigSpec.IntValue BAR_WIDTH;
-    public static final ModConfigSpec.IntValue BAR_HEIGHT;
-    public static final ModConfigSpec.IntValue ICON_SIZE;
-    public static final ModConfigSpec.IntValue ROW_SPACING;
-    public static final ModConfigSpec.IntValue TOP_MARGIN;
-    public static final ModConfigSpec.IntValue EDGE_MARGIN;
+    public static final ForgeConfigSpec.IntValue BAR_WIDTH;
+    public static final ForgeConfigSpec.IntValue BAR_HEIGHT;
+    public static final ForgeConfigSpec.IntValue ICON_SIZE;
+    public static final ForgeConfigSpec.IntValue ROW_SPACING;
+    public static final ForgeConfigSpec.IntValue TOP_MARGIN;
+    public static final ForgeConfigSpec.IntValue EDGE_MARGIN;
 
-    public static final ModConfigSpec.DoubleValue TOP_SCALE;
-    public static final ModConfigSpec.DoubleValue SUB_SCALE;
+    public static final ForgeConfigSpec.DoubleValue TOP_SCALE;
+    public static final ForgeConfigSpec.DoubleValue SUB_SCALE;
 
-    public static final ModConfigSpec.IntValue BG_COLOR;
-    public static final ModConfigSpec.IntValue HEALTH_HIGH_COLOR;
-    public static final ModConfigSpec.IntValue HEALTH_MID_COLOR;
-    public static final ModConfigSpec.IntValue HEALTH_LOW_COLOR;
+    public static final ForgeConfigSpec.IntValue BG_COLOR;
+    public static final ForgeConfigSpec.IntValue HEALTH_HIGH_COLOR;
+    public static final ForgeConfigSpec.IntValue HEALTH_MID_COLOR;
+    public static final ForgeConfigSpec.IntValue HEALTH_LOW_COLOR;
 
-    public static final ModConfigSpec.IntValue HOVER_BG_COLOR;
-    public static final ModConfigSpec.IntValue HOVER_TEXT_COLOR;
+    public static final ForgeConfigSpec.IntValue HOVER_BG_COLOR;
+    public static final ForgeConfigSpec.IntValue HOVER_TEXT_COLOR;
 
-    public static final ModConfigSpec.BooleanValue RENDER_ENTITY_ICON;
+    public static final ForgeConfigSpec.BooleanValue RENDER_ENTITY_ICON;
 
-    public static final ModConfigSpec.BooleanValue PRIORITIZE_LOOKED_AT;
+    public static final ForgeConfigSpec.BooleanValue PRIORITIZE_LOOKED_AT;
 
-    public static final ModConfigSpec.BooleanValue RENDER_HEALTH, RENDER_PRECENT;
+    public static final ForgeConfigSpec.BooleanValue RENDER_HEALTH, RENDER_PRECENT;
 
-    public static final ModConfigSpec.BooleanValue FONT_SHADOW;
+    public static final ForgeConfigSpec.BooleanValue FONT_SHADOW;
 
     static {
-        ModConfigSpec.Builder builder = new ModConfigSpec.Builder();
+        ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
 
         builder.push("general");
         ENABLED = builder
