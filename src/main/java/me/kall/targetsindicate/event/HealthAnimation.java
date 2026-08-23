@@ -94,10 +94,16 @@ public class HealthAnimation {
         }
 
         LivingEntity crosshairEntity = null;
-        HitResult hitResult = minecraft.hitResult;
-        if (hitResult instanceof EntityHitResult entityHitResult && entityHitResult.getEntity() instanceof LivingEntity livingHit) {
-            crosshairEntity = livingHit;
+        if (RenderConfig.HOVER_ENABLED.get()) {
+            int lookedAtEntityId = LookAtProvider.get();
+            if (lookedAtEntityId != -1) {
+                Entity looked = minecraft.level.getEntity(lookedAtEntityId);
+                if (looked instanceof LivingEntity livingLooked && livingLooked.isAlive()) {
+                    crosshairEntity = livingLooked;
+                }
+            }
         }
+
         int crosshairId = crosshairEntity != null ? crosshairEntity.getId() : -1;
 
         int lookedAtId = RenderConfig.PRIORITIZE_LOOKED_AT.get() ? crosshairId : -1;

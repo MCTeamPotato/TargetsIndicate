@@ -10,3 +10,7 @@ Introduce an animated health/target UI with hover preview support.
 
 # 1.1.1
 - Add language keys for the newly added config options
+
+# 1.2.0
+- Adds a line-of-sight hover preview for untracked targets, with config options for enabling it and limiting the max preview distance.
+- Fix bow attacking not working properly.
