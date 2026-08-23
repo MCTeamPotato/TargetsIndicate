@@ -8,6 +8,7 @@ import me.kall.targetsindicate.TargetsIndicate;
 import me.kall.targetsindicate.config.RenderConfig;
 import me.kall.targetsindicate.data.TargetState;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -31,16 +32,21 @@ public class DamageDetection {
     private static final float HEALTH_EPSILON = 0.01F;
 
     @SubscribeEvent
-    public static void onAttack(AttackEntityEvent event) {
+    public static void onAttack(LivingDamageEvent.Post event) {
         Minecraft minecraft = Minecraft.getInstance();
-        if (minecraft.level == null || !minecraft.level.isClientSide()) return;
-        if (minecraft.player == null || event.getEntity() != minecraft.player) return;
+        ClientLevel level = minecraft.level;
 
-        Entity target = event.getTarget();
-        if (!(target instanceof LivingEntity living)) return;
+        if (level == null || !level.isClientSide()) return;
 
-        int id = living.getId();
-        WATCH_HEALTH.putIfAbsent(id, living.getHealth());
+        Entity source = event.getSource().getEntity();
+        LocalPlayer player = minecraft.player;
+
+        if (source == null || player == null || !source.getUUID().equals(player.getUUID())) return;
+
+        LivingEntity target = event.getEntity();
+        int id = target.getId();
+
+        WATCH_HEALTH.putIfAbsent(id, target.getHealth());
         WATCH_SINCE.put(id, System.currentTimeMillis());
     }
 

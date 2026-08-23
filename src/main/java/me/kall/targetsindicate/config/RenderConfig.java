@@ -34,6 +34,9 @@ public final class RenderConfig {
 
     public static final ForgeConfigSpec.BooleanValue PRIORITIZE_LOOKED_AT;
 
+    public static final ForgeConfigSpec.BooleanValue HOVER_ENABLED;
+    public static final ForgeConfigSpec.DoubleValue HOVER_MAX_DISTANCE;
+
     public static final ForgeConfigSpec.BooleanValue RENDER_HEALTH, RENDER_PRECENT;
 
     public static final ForgeConfigSpec.BooleanValue FONT_SHADOW;
@@ -58,8 +61,14 @@ public final class RenderConfig {
                 .comment("目标多久没有再次受到伤害后开始淡出消失（秒）", "Time in seconds after which an undamaged target starts fading out")
                 .defineInRange("entryLifetime", 12, 0, Integer.MAX_VALUE);
         PRIORITIZE_LOOKED_AT = builder
-                .comment("开启后，如果玩家当前准星指向的生物已经在列表中，该目标会被强制提升为第一位（主目标位）", "When enabled, if the entity currently under the player's crosshair is already tracked, it is promoted to the top (main) slot")
+                .comment("开启后，如果玩家当前视线指向的生物已经在列表中，该目标会被强制提升为第一位（主目标位）", "When enabled, if the entity currently under the player's line of sight is already tracked, it is promoted to the top (main) slot")
                 .define("prioritizeLookedAtTarget", true);
+        HOVER_ENABLED = builder
+                .comment("是否显示视线指向但尚未被追踪目标的预览信息框", "Whether to show the preview info box for a line-of-sight target that is not yet tracked")
+                .define("hoverPreviewEnabled", true);
+        HOVER_MAX_DISTANCE = builder
+                .comment("预览未追踪目标时，视线检测的最大距离（方块，未被遮挡即可命中）", "Maximum line-of-sight distance (blocks) for previewing an untracked target, as long as it is not obstructed")
+                .defineInRange("hoverMaxDistance", 32.0, 1.0, 128.0);
         RENDER_HEALTH = builder.comment("是否在信息框生物名称后面渲染生物血量和最大血量。", "Whether to render health and max health after name.")
                 .define("renderHealthAndMaxHealth", true);
         RENDER_PRECENT = builder.comment("是否在信息框生物名称后渲染生物血量百分比", "Whether to render health percentage after name.")
@@ -110,10 +119,10 @@ public final class RenderConfig {
                 .comment("血量较低时的颜色 ARGB", "Color when health percentage is low ARGB")
                 .defineInRange("healthLowColor", 0xFFE04B3B, Integer.MIN_VALUE, Integer.MAX_VALUE);
         HOVER_BG_COLOR = builder
-                .comment("准星指向但尚未被追踪的目标，其预览信息框的背景颜色 ARGB（默认：半透明浅灰色）", "Background color ARGB of the preview box for a crosshair target that is not yet tracked (default: semi-transparent light gray)")
+                .comment("视线指向但尚未被追踪的目标，其预览信息框的背景颜色 ARGB（默认：半透明浅灰色）", "Background color ARGB of the preview box for a line-of-sight target that is not yet tracked (default: semi-transparent light gray)")
                 .defineInRange("hoverPreviewBackgroundColor", 0x60CCCCCC, Integer.MIN_VALUE, Integer.MAX_VALUE);
         HOVER_TEXT_COLOR = builder
-                .comment("准星指向但尚未被追踪的目标，其预览信息框的文字与血条颜色 ARGB（默认：灰色）", "Text and health bar color ARGB of the preview box for a crosshair target that is not yet tracked (default: gray)")
+                .comment("视线指向但尚未被追踪的目标，其预览信息框的文字与血条颜色 ARGB（默认：灰色）", "Text and health bar color ARGB of the preview box for a line-of-sight target that is not yet tracked (default: gray)")
                 .defineInRange("hoverPreviewTextColor", 0xFFAAAAAA, Integer.MIN_VALUE, Integer.MAX_VALUE);
         builder.pop();
 
