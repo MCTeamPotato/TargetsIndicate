@@ -12,15 +12,15 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.client.event.ClientTickEvent;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Optional;
 
-@EventBusSubscriber(modid = TargetsIndicate.MOD_ID, value = Dist.CLIENT)
+@Mod.EventBusSubscriber(modid = TargetsIndicate.MOD_ID, value = Dist.CLIENT)
 public final class LookAtProvider {
     private static int id = -1;
 
@@ -31,7 +31,9 @@ public final class LookAtProvider {
     }
 
     @SubscribeEvent
-    public static void onClientTick(ClientTickEvent.Pre event) {
+    public static void onClientTick(TickEvent.@NotNull ClientTickEvent event) {
+        if (!event.phase.equals(TickEvent.Phase.START)) return;
+
         Minecraft minecraft = Minecraft.getInstance();
         LocalPlayer player = minecraft.player;
         Level level = minecraft.level;

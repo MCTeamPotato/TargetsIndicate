@@ -15,7 +15,8 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.event.entity.player.AttackEntityEvent;
+import net.minecraftforge.event.entity.living.LivingDamageEvent;
+import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import org.jetbrains.annotations.NotNull;
@@ -31,8 +32,10 @@ public class DamageDetection {
     private static final long WATCH_TIMEOUT_MS = 8000L;
     private static final float HEALTH_EPSILON = 0.01F;
 
-    @SubscribeEvent
-    public static void onAttack(LivingDamageEvent.Post event) {
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public static void onAttack(@NotNull LivingDamageEvent event) {
+        if (event.getAmount() == 0.0F) return;
+
         Minecraft minecraft = Minecraft.getInstance();
         ClientLevel level = minecraft.level;
 
